@@ -42,7 +42,7 @@ const port = process.env.PORT || 8080;
 
 // //MongoDB Atlas connection using native driver
 // const MongoClient = require('mongodb').MongoClient;
-// const uri = 'mongodb+srv://indus:QJj4xBy0G8N5IQCM@cluster0.hdmxbb1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+// const uri = 'mongodb+srv://indus:nBWd2YtYgac2tnNC@cluster0.hdmxbb1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // const client = new MongoClient(uri, {});
 

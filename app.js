@@ -37,11 +37,9 @@ app.use(function (req, res, next) {
 // db.once('open', () => {
 //     console.log('Connected to MongoDB');
 // });
-const uri='mongodb+srv://indusunkari7:nXnbRNYWtCvOTaeP@cluster0.ciatzo7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
- 
-mongoose.connect(uri, {
- 
-  });
+mongoose.connect('mongodb+srv://indus:QJj4xBy0G8N5IQCM@cluster0.hdmxbb1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+  
+});
 const db = mongoose.connection;
 db.on('error', (error) => {
   console.error('Error connecting to MongoDB Atlas with Mongoose:', error);

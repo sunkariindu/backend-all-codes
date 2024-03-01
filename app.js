@@ -22,13 +22,13 @@ const path = require('path');
  
 const port = process.env.PORT || 8080;
  
-// app.use(function (req, res, next) {
-  // res.header('Access-Control-Allow-Origin',"*");
-  // res.header('Access-Control-Allow-Headers', true);
-  // res.header('Access-Control-Allow-Credentials', true);
-  // res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // next();
-// });
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin',"*");
+  res.header('Access-Control-Allow-Headers', true);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  next();
+});
 // Connect to MongoDB
 // mongoose.connect('mongodb://localhost:27017/data', );
 // const db = mongoose.connection;

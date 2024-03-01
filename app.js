@@ -22,31 +22,51 @@ const path = require('path');
  
 const port = process.env.PORT || 8080;
  
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin',"*");
-//   res.header('Access-Control-Allow-Headers', true);
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   next();
-// });
-// Connect to MongoDB
-// mongoose.connect('mongodb://localhost:27017/data', );
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin',"*");
+  res.header('Access-Control-Allow-Headers', true);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  next();
+});
+
+
+// //Connect to MongoDB
+// mongoose.connect('mongodb://localhost:27017/datamodaling', {  });
 // const db = mongoose.connection;
  
-// db.on('error', console.error.bind(console, 'MongoDB connection error',{ useNewUrlParser: true, useUnifiedTopology: true }));
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // db.once('open', () => {
 //     console.log('Connected to MongoDB');
 // });
-mongoose.connect('mongodb+srv://indus:QJj4xBy0G8N5IQCM@cluster0.hdmxbb1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-  
+
+//MongoDB Atlas connection using native driver
+const MongoClient = require('mongodb').MongoClient;
+const uri = 'mongodb+srv://indus:QJj4xBy0G8N5IQCM@cluster0.hdmxbb1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+const client = new MongoClient(uri, {});
+
+//Connect to MongoDB Atlas
+client.connect(err => {
+    if (err) {
+        console.error('Error connecting to MongoDB Atlas:', err);
+    } else {
+        console.log('Connected to MongoDB Atlas');
+    }
 });
+
+//Mongoose setup
+mongoose.connect(uri, { });
 const db = mongoose.connection;
+
 db.on('error', (error) => {
-  console.error('Error connecting to MongoDB Atlas with Mongoose:', error);
+    console.error('Error connecting to MongoDB Atlas with Mongoose:', error);
 });
+
 db.once('open', () => {
-  console.log('Connected to MongoDB Atlas with Mongoose');
+    console.log('Connected to MongoDB Atlas with Mongoose');
 });
+
  
 app.use(express.json());
 app.use(cors());

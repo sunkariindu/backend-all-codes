@@ -16,7 +16,7 @@ const paymentRoute = require('./routes/paymentRoute');
 const appRoute = require('./routes/route');
 const pincodeRoute = require('./routes/pincodeRoute.js');
 
-const port = process.env.PORT || 4500;
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 

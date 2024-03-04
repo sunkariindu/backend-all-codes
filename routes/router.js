@@ -31,6 +31,21 @@ router.get('/read', async (req, res, next) => {
         res.status(500).json({ error: err.message });
     }
 });
+router.get('/read/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const cruds = await Crud.find({ userId: userId });
+        
+        if (!cruds || cruds.length === 0) {
+            return res.status(404).json({ message: 'No cruds found for the specified userId' });
+        }
+
+        res.status(200).json({ data: cruds, message: 'Cruds retrieved successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.message });
+    }
+});
  
 router.put('/update/:id', async (req, res, next) => {
     const crudId = req.params.id;
